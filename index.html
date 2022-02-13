@@ -120,64 +120,64 @@
           </div>
         </div>
         <div class="column">
-            <article class="panel">
-              <div class="tabs is-boxed">
-                <ul>
-                  <li class="is-active">
-                    <a>
-                      <span class="icon is-small"><i class="fas fa-clipboard-list" aria-hidden="true"></i></span>
-                      <span>Current</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="icon is-small"><i class="fas fa-calendar-times" aria-hidden="true"></i></span>
-                      <span>Completed</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="icon is-small"><i class="fas fa-calendar-day" aria-hidden="true"></i></span>
-                      <span>Upcoming</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="icon is-small"><i class="fas fa-calendar" aria-hidden="true"></i></span>
-                      <span>All</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="panel-block">
-                <p class="control has-icons-left">
-                  <input class="input is-primary" type="text" placeholder="New Task">
-                  <span class="icon is-left">
-                    <i class="fas fa-calendar-plus" aria-hidden="true"></i>
-                  </span>
-                </p>
-              </div>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
-                  Make Bulma great again
-              </a>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
-                  Add some more features
-              </a>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
-                  Make a github account
-              </a>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
-                  Learn how to use github
-              </a>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
-                  add a .gitignore file
-              </a>
-            </article>
+          <article class="panel">
+            <div class="tabs is-boxed">
+              <ul>
+                <li class="is-active tab">
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-clipboard-list" aria-hidden="true"></i></span>
+                    <span>Current</span>
+                  </a>
+                </li>
+                <li class="tab">
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-calendar-times" aria-hidden="true"></i></span>
+                    <span>Completed</span>
+                  </a>
+                </li>
+                <li class="tab">
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-calendar-day" aria-hidden="true"></i></span>
+                    <span>Upcoming</span>
+                  </a>
+                </li>
+                <li class="tab">
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-calendar" aria-hidden="true"></i></span>
+                    <span>All</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="panel-block">
+              <p class="control has-icons-left">
+                <input class="input is-primary" type="text" placeholder="New Task">
+                <span class="icon is-left">
+                  <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                </span>
+              </p>
+            </div>
+            <a class="panel-block is-active">
+              <input type="checkbox">
+              Make Bulma great again
+            </a>
+            <a class="panel-block is-active">
+              <input type="checkbox">
+              Add some more features
+            </a>
+            <a class="panel-block is-active">
+              <input type="checkbox">
+              Make a github account
+            </a>
+            <a class="panel-block is-active">
+              <input type="checkbox">
+              Learn how to use github
+            </a>
+            <a class="panel-block is-active">
+              <input type="checkbox">
+              add a .gitignore file
+            </a>
+          </article>
         </div>
         <div class="column is-3">
           <h1 class="title">Table of contents</h1>
@@ -220,6 +220,44 @@
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script>
+    $(".panel-block input").change(function () {
+      if ($(this).prop('checked')) {
+        $(this).parent(".panel-block").css('text-decoration', 'line-through');
+      }
+      else {
+        $(this).parent(".panel-block").css('text-decoration', 'none');
+      }
+    });
+
+    $(".tab").click(function () {
+      $(".tab").removeClass("is-active");
+      $(this).addClass("is-active");
+      $(".panel-block").hide();
+      if ($(this).text().indexOf("Completed") != -1) {
+        $(".panel-block").each(function () {
+          if ($(this).css('text-decoration-line') == "line-through") {
+            $(this).show()
+          }
+        });
+      }
+      else if ($(this).text().indexOf("Current") != -1) {
+        $(".panel-block").each(function () {
+          if ($(this).css('text-decoration-line') == "none") {
+            $(this).show()
+          }
+        });
+      }
+      else {
+        $(".panel-block").each(function () {
+          $(this).show()
+        });
+      }
+    });
+
+  </script>
 </body>
 
 </html>
