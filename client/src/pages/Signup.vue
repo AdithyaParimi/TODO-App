@@ -1,71 +1,140 @@
-<script setup lang="ts">
-
-import { ref } from "@vue/reactivity";
-import { Login, Signup } from "../models/session"
-import {User} from "../models/user";
-
-const firstName= ref();
-const lastName = ref();
-const username = ref();
-const password = ref();
-const email = ref();
-
-function signup()
-{
-    const user: User={
-        firstName: firstName.value,
-        lastName: lastName.value,
-        handle: username.value,
-        password: password.value,
-        email: email.value,
-        id:0,
-        pic: ''
-    }
-    Signup(user);
-}
-
-</script>
-
 <template>
-     <div class="section">
-         <h1 class="title">Signup</h1>
-         <div>
-            <label for="firstName">First Name</label>
-            <input id="firstName" class="input" placeholder="First Name" v-model="firstName" />
-        </div>
-        <div>
-            <label for="lastName">Last Name</label>
-            <input id="lastName" class="input" placeholder="Last Name" v-model="lastName" />
-        </div>
-        <div>
-            <label for="username">User Name</label>
-            <input id="username" class="input" placeholder="User Name " v-model="username" />
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input id="email" class="input" placeholder="email" v-model="email" />
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input id="password" class="input" placeholder="Password" v-model="password" />
-        </div>
-        
-        <button class="button is-primary my-5" @click="signup"> 
-            <span class="icon">
-               <i class="fa fa-sign-in"></i>
-            </span>
-            <span>Signup</span>
-        </button>
-        &nbsp;
-        <router-link class="button is-warning my-5" to="/login">
-            <span class="icon">
-                <i class="fa fa-sign-in"></i>
-            </span>
-            <span>Login</span>
-        </router-link>
-    </div>
+  <div id="main">
+    <form v-cloak>
+      <h1>Login</h1>
+      <input
+        v-model="emailLogin"
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        required
+      />
+      <input
+        v-model="passwordLogin"
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+      <input type="submit" class="btn btn-primary" @click="doLogin" />
+    </form>
+  </div>
 </template>
 
-<style scoped>
+<script>
+export default {
+  data() {
+    // The model properties. The view should loop
+    // through the facilities array and generate a li
+    // element for every one of its items.
+    return {
+      emailLogin: "",
+      passwordLogin: "",
+    };
+  },
+  methods: {
+    // this method will toggle an item to make it active/inactive (no change necessary)
+    doLogin: function (e) {
+      alert(this.emailLogin + " " + this.passwordLogin);
+      this.$emit("lcallback");
+    },
+    // method to format as currency
+  },
+};
+</script>
 
+<style scoped>
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Shadows+Into+Light);
+[v-cloak] {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 15px/1.3 "Open Sans", sans-serif;
+  color: #5e5b64;
+  text-align: center;
+}
+
+a,
+a:visited {
+  outline: none;
+  color: #389dc1;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+section,
+footer,
+header,
+aside,
+nav {
+  display: block;
+}
+
+/*-------------------------
+    The order form
+--------------------------*/
+
+form {
+  background-color: #8931ef;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px #ccc;
+  width: 400px;
+  padding: 35px 60px;
+  margin: 50px auto;
+}
+
+form h1 {
+  color: #fff;
+  font-size: 64px;
+  font-family: "Cookie", cursive;
+  font-weight: normal;
+  line-height: 1;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+form ul {
+  list-style: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  margin: 20px 0 15px;
+}
+
+form ul li {
+  padding: 20px 30px;
+  background-color: #a5949a;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+form ul li span {
+  float: right;
+}
+
+form ul li.active {
+  background-color: #87e911;
+}
+
+div.total {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  color: #fff;
+}
+
+div.total span {
+  float: right;
+}
 </style>
