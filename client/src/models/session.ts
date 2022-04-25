@@ -26,8 +26,7 @@ export async function Signup(newUser: users.User) {
     const newUserId = Math.max(...users.list.map(_=>_.id))+1;
     users.list.push({
     email: newUser.email,
-    firstName: newUser.firstName,
-    lastName: newUser.lastName,
+    name: newUser.name,
     password: newUser.password,
     handle: newUser.handle,
     id: newUserId,
