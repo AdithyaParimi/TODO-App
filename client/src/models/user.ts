@@ -1,7 +1,6 @@
 
 export interface User {
-    firstName: string;
-    lastName: string;
+    name: string;
     handle: string;
     password: string;
     email: string;
@@ -11,8 +10,7 @@ export interface User {
 
 export const list: User[] = [
     {
-        firstName: 'Adithya',
-        lastName: 'Parimi',
+        name: 'Adithya',
         handle: 'Adhi',
         password: 'password',
         email: 'parimia@newpaltz.edu',
@@ -20,8 +18,7 @@ export const list: User[] = [
         id: 1,
     },
     {
-        firstName: 'Sasi',
-        lastName: 'Maddineni',
+        name: 'Sasi',
         handle: 'sasi',
         password: 'password',
         email: 'maddinenis2@newpaltz.com',
@@ -29,8 +26,7 @@ export const list: User[] = [
         id: 2,
     },
     {
-        firstName: 'Ramu',
-        lastName: 'Malemapati',
+        name: 'Ramu',
         handle: 'ram',
         password: 'password',
         email: 'malempar2@newpaltz.edu',
