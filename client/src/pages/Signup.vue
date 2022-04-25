@@ -4,8 +4,7 @@ import { ref } from "@vue/reactivity";
 import { Login, Signup } from "../models/session"
 import {User} from "../models/user";
 
-const firstName= ref();
-const lastName = ref();
+const name= ref();
 const username = ref();
 const password = ref();
 const email = ref();
@@ -13,8 +12,7 @@ const email = ref();
 function signup()
 {
     const user: User={
-        firstName: firstName.value,
-        lastName: lastName.value,
+        name: name.value,
         handle: username.value,
         password: password.value,
         email: email.value,
@@ -30,12 +28,8 @@ function signup()
      <div class="section">
          <h1 class="title">Signup</h1>
          <div>
-            <label for="firstName">First Name</label>
-            <input id="firstName" class="input" placeholder="First Name" v-model="firstName" />
-        </div>
-        <div>
-            <label for="lastName">Last Name</label>
-            <input id="lastName" class="input" placeholder="Last Name" v-model="lastName" />
+            <label for="Name">First Name</label>
+            <input id="name" class="input" placeholder="Name" v-model="name" />
         </div>
         <div>
             <label for="username">User Name</label>

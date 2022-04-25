@@ -12,30 +12,27 @@ function login()
 </script>
 
 <template>
-    <div class="section">
-         <h1 class="title">Login</h1>
-        <div>
+     <div id="main">
+    <form v-cloak>
+      <h1>Login</h1>
+      <div>
             <label for="username">User Name</label>
-            <input id="username" class="input" placeholder="User Name " v-model="username" />
-        </div>
-        <div>
+            <input id="username" class="input form-control" placeholder="User Name " v-model="username" />
+      </div>
+      <div>
             <label for="password">Password</label>
-            <input id="password" class="input" placeholder="Password" v-model="password" />
-        </div>
-        <button class="button is-primary my-5" @click="login"> 
-            <span class="icon">
-               <i class="fa fa-sign-in"></i>
-            </span>
-            <span>Login</span>
-        </button>
-        &nbsp;
+            <input id="password" class="input form-control" placeholder="Password" type="password" v-model="password" />
+      </div>
+      <input type="submit" class="btn btn-primary" @click="login" />
+    </form>
+    &nbsp;
         <router-link class="button is-warning my-5" to="/signup">
             <span class="icon">
                 <i class="fa fa-sign-in"></i>
             </span>
             <span>Signup</span>
         </router-link>
-    </div>
+  </div>
 </template>
 
 
