@@ -6,6 +6,7 @@ import Signup from '../pages/Signup.vue'
 import session from "../models/session"
 
 const routes: RouteRecordRaw[] = [
+  { path: '/', redirect:'/home' },
   { path: '/home', component: Home },
   { path: '/signup', component: Signup },
   { path: '/login', component: Login },
