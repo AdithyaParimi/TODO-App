@@ -6,6 +6,7 @@ export interface User {
     email: string;
     pic: string;
     id: number;
+    token?: string;
 }
 
 export const list: User[] = [
