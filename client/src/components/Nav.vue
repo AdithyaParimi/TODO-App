@@ -3,8 +3,8 @@
 import { ref } from 'vue';
 
 import LoginBadge from './LoginBadge.vue';
-import session from "../models/session";
-
+import { useSession } from "../models/session";
+const session = useSession();
 
 </script>
 
