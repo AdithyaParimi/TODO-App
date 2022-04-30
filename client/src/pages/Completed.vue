@@ -5,9 +5,8 @@ import moment from 'moment';
 
 import { usetasks } from '../models/task'
 import * as users from "../models/user";
-import session from '../models/session'
-
-
+import { useSession } from "../models/session";
+const session = useSession();
 const currentTab = ref( 'All' );
 const allTasks = usetasks();
 const tasks = allTasks.completedTasks;
