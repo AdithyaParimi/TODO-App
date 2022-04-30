@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity"
-import { Login } from "../models/session"
-
+import { useSession } from "../models/session";
+const session = useSession();
 const username= ref();
 const password= ref();
 
 function login()
 {
-    Login(username.value, password.value)
+    session.Login(username.value, password.value)
 }
 </script>
 
