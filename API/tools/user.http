@@ -21,8 +21,7 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-  "firstName": "Naveen",
-  "lastName": "Malem",
+  "name": "Naveen",
   "handle": "naveen",
   "password": "password",
   "email": "malemn@newpaltz.edu",
@@ -34,9 +33,9 @@ PATCH http://localhost:3001/api/users/2
 Content-Type: application/json
 
 {
-  "lastName": "Putin III",
-  "password": "Ukraine",
-  "email": "save@ukraine.com"
+  "name": "Ramu",
+  "password": "secret",
+  "email": "suny@newpaltz.edu"
 }
 
 ###
