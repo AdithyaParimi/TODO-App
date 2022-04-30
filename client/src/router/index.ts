@@ -6,8 +6,8 @@ import Signup from '../pages/Signup.vue'
 import session from "../models/session"
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', redirect:'/home' },
-  { path: '/home', component: Home },
+  { path: '/', redirect:'/tasks' },
+  { path: '/tasks', component: Home },
   { path: '/signup', component: Signup },
   { path: '/login', component: Login },
 ]
@@ -20,14 +20,14 @@ const router : Router = createRouter({
 })
 
 router.beforeEach((to, form) =>{
-  if(['/home'].includes(to.path)){
+  if(['/tasks'].includes(to.path)){
       if(!session.user){
           router.push('/login');
       }
   }
   else if(['/login', '/signup'].includes(to.path)){
     if(session.user){
-        router.push('/home');
+        router.push('/tasks');
     }
 }
 })
