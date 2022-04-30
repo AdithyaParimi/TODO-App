@@ -13,7 +13,7 @@ function login()
 
 <template>
      <div id="main">
-    <form v-cloak>
+    <form  @submit.prevent="login">
       <h1>Login</h1>
       <div>
             <label for="username">User Name</label>
@@ -23,7 +23,7 @@ function login()
             <label for="password">Password</label>
             <input id="password" class="input form-control" placeholder="Password" type="password" v-model="password" />
       </div>
-      <input type="submit" class="btn btn-primary" @click="login" />
+      <input type="submit" class="btn btn-primary"/>
     </form>
     &nbsp;
         <router-link class="button is-warning my-5" to="/signup">
