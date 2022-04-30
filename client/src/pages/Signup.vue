@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
 import { ref } from "@vue/reactivity";
-import { Login, Signup } from "../models/session"
 import {User} from "../models/user";
+import { useSession } from "../models/session";
+const session = useSession();
 
 const name= ref();
 const username = ref();
@@ -19,7 +20,7 @@ function signup()
         id:0,
         pic: ''
     }
-    Signup(user);
+    session.Signup(user);
 }
 
 </script>
