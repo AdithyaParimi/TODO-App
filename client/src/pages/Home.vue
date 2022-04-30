@@ -32,33 +32,6 @@ function submitForm(e){
        <div class="section">
        <div class="container">
         <div class="columns">
-          <div class="column is-3">
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title">
-                  Component
-                </p>
-                <button class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </header>
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                  <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                  <br>
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-              <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Edit</a>
-                <a href="#" class="card-footer-item">Delete</a>
-              </footer>
-            </div>
-          </div>
           <div class="column">
               <article class="panel">
                 <div class="tabs is-boxed">
@@ -108,10 +81,23 @@ function submitForm(e){
                   </div>
                   </form>
                 </div>
-                <a class="panel-block columns" v-for="task in tasks" :key="task.message" :class="{'text-dec-line-through' : task.completed==true}" >
-                      <div class="column is-three-quarter">
+                <a class="panel-block columns title is-4" >
+                      <div class="column is-two-quarter">
+                        <span class="Heading">Task Title</span>
+                      </div>
+                       <div class="column is-one-quarter">
+                        Due Date
+                      </div>
+                    <div class="column is-one-quarter">
+                      Assigned To
+                    </div>
+                </a>
+                <div class="panel-block columns" v-for="task in tasks" :key="task.message" :class="{'text-dec-line-through' : task.completed==true}" >
+                      <div class="column is-two-quarter">
                         <input type="checkbox" class="checkbox" v-model="task.completed" :disabled="task.assignedTo!=session.user?.id">
-                        <br />
+                        <span>{{task.message }}</span>
+                      </div>
+                       <div class="column is-one-quarter">
                         {{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}
                       </div>
                       <div class="select column is-one-quarter" v-if="task.createdBy==session.user?.id">
@@ -119,49 +105,11 @@ function submitForm(e){
                           <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
                         </select>
                       </div>
-                    <div v-if="task.createdBy!=session.user?.id" class="column is-one-quarter">
+                    <div v-else class="column is-one-quarter">
                       {{users.list.find(u => u.id === task.assignedTo).handle}}
                     </div>
-                </a>
+                </div>
               </article>
-          </div>
-          <div class="column is-3">
-            <h1 class="title">Table of contents</h1>
-            <h2 class="subtitle">Intra-page navigation</h2>
-            <aside class="menu">
-              <p class="menu-label">
-                General
-              </p>
-              <ul class="menu-list">
-                <li><a>Dashboard</a></li>
-                <li><a>Customers</a></li>
-              </ul>
-              <p class="menu-label">
-                Administration
-              </p>
-              <ul class="menu-list">
-                <li><a>Team Settings</a></li>
-                <li>
-                  <a class="is-active">Manage Your Team</a>
-                  <ul>
-                    <li><a>Members</a></li>
-                    <li><a>Plugins</a></li>
-                    <li><a>Add a member</a></li>
-                  </ul>
-                </li>
-                <li><a>Invitations</a></li>
-                <li><a>Cloud Storage Environment Settings</a></li>
-                <li><a>Authentication</a></li>
-              </ul>
-              <p class="menu-label">
-                Transactions
-              </p>
-              <ul class="menu-list">
-                <li><a>Payments</a></li>
-                <li><a>Transfers</a></li>
-                <li><a>Balance</a></li>
-              </ul>
-            </aside>
           </div>
         </div>
       </div>
