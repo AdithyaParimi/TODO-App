@@ -3,9 +3,10 @@ import { createRouter, createWebHistory, Router, RouteRecord, RouteRecordRaw } f
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
 import Signup from '../pages/Signup.vue'
-import session from "../models/session"
 import Current from "../pages/Current.vue"
 import Completed from "../pages/Completed.vue"
+import { useSession } from "../models/session";
+const session = useSession();
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect:'/tasks' },
