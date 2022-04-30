@@ -29,7 +29,7 @@ function signup()
      <div class="section">
          <h1 class="title">Signup</h1>
          <div>
-            <label for="Name">First Name</label>
+            <label for="Name">Name</label>
             <input id="name" class="input" placeholder="Name" v-model="name" />
         </div>
         <div>
