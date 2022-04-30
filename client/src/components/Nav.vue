@@ -3,6 +3,8 @@
 import { ref } from 'vue';
 
 import LoginBadge from './LoginBadge.vue';
+import session from "../models/session";
+
 
 </script>
 
@@ -19,10 +21,16 @@ import LoginBadge from './LoginBadge.vue';
           <span></span>
         </div>
       </div>
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
-        <div class="navbar-start">
+      <div id="navbarExampleTransparentExample" class="navbar-menu" >
+        <div class="navbar-start" v-if="session.user">
           <router-link class="navbar-item" to="/tasks">
             Tasks
+          </router-link>
+          <router-link class="navbar-item" to="/completedtasks">
+            Completed Tasks
+          </router-link>
+          <router-link class="navbar-item" to="/currenttasks">
+            Current Tasks
           </router-link>
         </div>
         <div class="navbar-end">
