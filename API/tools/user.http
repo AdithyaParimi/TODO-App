@@ -21,12 +21,12 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-  "firstName": "Donald",
-  "lastName": "Christian",
-  "handle": "newpaltz_benevolent",
-  "password": "hugo",
-  "email": "president@newpaltz.edu",
-  "pic": "https://randomuser.me/api/portraits/men/2.jpg"
+  "firstName": "Adhitya",
+  "lastName": "Parimi",
+  "handle": "adhi",
+  "password": "password",
+  "email": "parimia@newpaltz.edu",
+  "pic": "https://randomuser.me/api/portraits/men/10.jpg"
 }
 
 ###
