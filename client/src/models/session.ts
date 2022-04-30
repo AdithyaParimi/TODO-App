@@ -19,7 +19,7 @@ export async function Login(handle: string, password: string) {
     }
 
     session.user = user;
-    router.push('/home');
+    router.push('/tasks');
 }
 
 export async function Signup(newUser: users.User) {
@@ -34,7 +34,7 @@ export async function Signup(newUser: users.User) {
     });
     
     session.user = users.list.find(_=>_.id==newUserId)||null;
-    router.push('/home');
+    router.push('/tasks');
 }
 
 export function Logout() {
