@@ -10,14 +10,7 @@ import session from '../models/session'
 
 const currentTab = ref( 'All' );
 const allTasks = usetasks();
-const tasks = computed(() => { 
-  if(currentTab.value == 'Completed')
-    return allTasks.completedTasks;
-  else if(currentTab.value == 'Current')
-    return allTasks.currentTasks;
-  else
-    return allTasks.tasks;
-}); 
+const tasks = allTasks.currentTasks;
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
@@ -34,34 +27,6 @@ function submitForm(e){
         <div class="columns">
           <div class="column">
               <article class="panel">
-                <div class="tabs is-boxed">
-                  <ul>
-                    <li class="is-current" :class="{ 'is-active': currentTab == 'Current'}" @click="currentTab='Current'">
-                      <a>
-                        <span class="icon is-small"><i class="fas fa-clipboard-list" aria-hidden="true"></i></span>
-                        <span>Current</span>
-                      </a>
-                    </li>
-                    <li class="is-completed" :class="{ 'is-active': currentTab == 'Completed'}" @click="currentTab='Completed'">
-                      <a>
-                        <span class="icon is-small"><i class="fas fa-calendar-times" aria-hidden="true"></i></span>
-                        <span>Completed</span>
-                      </a>
-                    </li>
-                    <li class="is-upcoming" :class="{ 'is-active': currentTab == 'Upcoming'}" @click="currentTab='Upcoming'">
-                      <a>
-                        <span class="icon is-small"><i class="fas fa-calendar-day" aria-hidden="true"></i></span>
-                        <span>Upcoming</span>
-                      </a>
-                    </li>
-                    <li class="is-all" :class="{ 'is-active': currentTab == 'All'}" @click="currentTab='All'">
-                      <a>
-                        <span class="icon is-small"><i class="fas fa-calendar" aria-hidden="true"></i></span>
-                        <span>All</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
                 <div class="panel-block">
                   <form @submit.prevent="submitForm">
                   <p class="control has-icons-left">
