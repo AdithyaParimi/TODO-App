@@ -6,7 +6,6 @@ import Signup from '../pages/Signup.vue'
 import Current from "../pages/Current.vue"
 import Completed from "../pages/Completed.vue"
 import { useSession } from "../models/session";
-const session = useSession();
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect:'/tasks' },
@@ -25,6 +24,7 @@ const router : Router = createRouter({
 })
 
 router.beforeEach((to, form) =>{
+  const session = useSession();
   if(['/tasks'].includes(to.path)){
       if(!session.user){
           router.push('/login');
