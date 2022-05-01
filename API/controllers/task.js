@@ -48,7 +48,7 @@ app
   })
   .get("/currentUserTasks",requireAuth , (req, res, next) => {
     taskModel
-      .getCurrentTasks(req.user._id)
+      .getCurrentUserTasks(req.user._id)
       .then((tasks) => {
         res.send({ success: true, errors: [], data: tasks });
       })
