@@ -30,6 +30,14 @@ const getCurrentTasks = async (id) => {
   return data;
 };
 
+const getCurrentUserTasks = async (id) => {
+  const data = await collection.find({ $or: [ { assignedTo: id }, { createdBy: id } ] }).toArray();
+  if (!data) {
+    throw { statusCode: 404, message: "No completed Tasks" };
+  }
+  return data;
+};
+
 const getTasksCreatedByUser = async (id) => {
   const data = await collection.find({ createdBy: id }).toArray();
   if (!data) {
@@ -100,4 +108,5 @@ module.exports = {
   createTask,
   getCompletedTasks,
   getCurrentTasks,
+  getCurrentUserTasks,
 };
