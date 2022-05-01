@@ -22,14 +22,14 @@ app
       })
       .catch(next);
   })
-  .get("/:id", requireAuth, (req, res, next) => {
-    taskModel
-      .getTask(req.params.id)
-      .then((tasks) => {
-        res.send({ success: true, errors: [], data: tasks });
-      })
-      .catch(next);
-  })
+  // .get("/:id", requireAuth, (req, res, next) => {
+  //   taskModel
+  //     .getTask(req.params.id)
+  //     .then((tasks) => {
+  //       res.send({ success: true, errors: [], data: tasks });
+  //     })
+  //     .catch(next);
+  // })
   .get("/completed",requireAuth , (req, res, next) => {
     taskModel
       .getCompletedTasks(req.user._id)
@@ -46,7 +46,14 @@ app
       })
       .catch(next);
   })
-
+  .get("/currentUserTasks",requireAuth , (req, res, next) => {
+    taskModel
+      .getCurrentTasks(req.user._id)
+      .then((tasks) => {
+        res.send({ success: true, errors: [], data: tasks });
+      })
+      .catch(next);
+  })
   .get("/user/:id", requireAuth, (req, res, next) => {
     taskModel
       .getTasksCreatedByUser(req.params.id)
