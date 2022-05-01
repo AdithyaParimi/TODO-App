@@ -15,7 +15,7 @@ const getTask = async (id) => {
 };
 
 const getCompletedTasks = async (id) => {
-  const data = await collection.find({ createdBy: id, completed: true }).toArray();
+  const data = await collection.find({ assignedTo: id, completed: true }).toArray();
   if (!data) {
     throw { statusCode: 404, message: "No completed Tasks" };
   }
