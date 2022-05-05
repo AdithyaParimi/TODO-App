@@ -4,7 +4,6 @@ import { computed, ref } from 'vue';
 import moment from 'moment';
 
 import { usetasks } from '../models/task'
-import * as users from "../models/user";
 import { useSession } from "../models/session";
 const session = useSession();
 
@@ -17,6 +16,11 @@ tasksService.currentUserTasks().then(()=>{
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
+const users = ref([])
+
+session.getUsers().then(u=>{
+  users.value = session.users
+})
 
 function submitForm(e){
   // allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
@@ -43,7 +47,7 @@ function submitForm(e){
                     <input type="date" class="input" v-model="dueDate"/>
                      <select v-model="assignedTo">
                       <option disabled selected>Assign to</option>
-                      <option v-for="user in users.list" :key="user.id">{{user.handle}}</option>
+                      <option v-for="user in users" :key="user.id">{{user.handle}}</option>
                     </select>
                     <button  type="submit" class="button">Create</button>
                   </div>
@@ -68,13 +72,13 @@ function submitForm(e){
                        <div class="column is-one-quarter">
                         {{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}
                       </div>
-                      <div class="select column is-one-quarter" v-if="task.createdBy==session.user?.id">
-                        <select v-model="task.assignedTo" class="select">
-                          <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
+                      <div class="select column is-one-quarter" v-if="task.createdBy==session.user?._id">
+                        <select :v-model="task.assignedTo" class="select">
+                          <option v-for="user in users" :value="user._id">{{user.handle}}</option>
                         </select>
                       </div>
                     <div v-else class="column is-one-quarter">
-                      {{users.list.find(u => u.id === task.assignedTo)?.handle}}
+                      {{users.find(u => u._id === task.assignedTo)?.handle}}
                     </div>
                 </div>
               </article>
