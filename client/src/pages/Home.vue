@@ -9,10 +9,10 @@ import { useSession } from "../models/session";
 const session = useSession();
 
 const currentTab = ref( 'All' );
-const tasks = usetasks();
+const tasksService = usetasks();
 const allTasks = ref([])
-tasks.currentUserTasks().then(()=>{
-  allTasks.value = tasks.tasks
+tasksService.currentUserTasks().then(()=>{
+  allTasks.value = tasksService.tasks
 })
 const newTask=ref();
 const dueDate=ref();
