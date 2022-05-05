@@ -8,14 +8,17 @@ import * as users from "../models/user";
 import { useSession } from "../models/session";
 const session = useSession();
 const currentTab = ref( 'All' );
-const allTasks = usetasks();
-const tasks = allTasks.completedTasks;
+const tasksService = usetasks();
+const tasks = ref([]);
+tasksService.completedTasks().then(t=>{
+  tasks.value = tasksService.completedTasks;
+})
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
 
 function submitForm(e){
-  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
+  tasksService.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
    console.log(newTask);
 }
 
@@ -70,7 +73,7 @@ function submitForm(e){
                         </select>
                       </div>
                     <div v-else class="column is-one-quarter">
-                      {{users.list.find(u => u.id === task.assignedTo).handle}}
+                      {{users.list.find(u => u.id === task.assignedTo)?.handle}}
                     </div>
                 </div>
               </article>
