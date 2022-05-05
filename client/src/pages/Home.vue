@@ -9,14 +9,17 @@ import { useSession } from "../models/session";
 const session = useSession();
 
 const currentTab = ref( 'All' );
-const allTasks = usetasks();
-const tasks = allTasks.tasks;
+const tasks = usetasks();
+const allTasks = ref([])
+tasks.currentUserTasks().then(()=>{
+  allTasks.value = tasks.tasks
+})
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
 
 function submitForm(e){
-  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
+  // allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
    console.log(newTask);
 }
 
@@ -57,7 +60,7 @@ function submitForm(e){
                       Assigned To
                     </div>
                 </a>
-                <div class="panel-block columns" v-for="task in tasks" :key="task.message" :class="{'text-dec-line-through' : task.completed==true}" >
+                <div class="panel-block columns" v-for="task in allTasks" :key="task.message" :class="{'text-dec-line-through' : task.completed==true}" >
                       <div class="column is-two-quarter">
                         <input type="checkbox" class="checkbox" v-model="task.completed" :disabled="task.assignedTo!=session.user?.id">
                         <span>{{task.message }}</span>
@@ -71,7 +74,7 @@ function submitForm(e){
                         </select>
                       </div>
                     <div v-else class="column is-one-quarter">
-                      {{users.list.find(u => u.id === task.assignedTo).handle}}
+                      {{users.list.find(u => u.id === task.assignedTo)?.handle}}
                     </div>
                 </div>
               </article>
