@@ -11,7 +11,7 @@ export const usetasks = defineStore('tasks', {
         completedTasks: [],
         session: useSession(),
     }),
-    getters:{
+    actions: {
         async completedTasks(){
             const tasks = await this.session.api('tasks/completed');
             this.completedTasks = tasks;
@@ -24,10 +24,8 @@ export const usetasks = defineStore('tasks', {
 
         async currentUserTasks(){
             const tasks = await this.session.api('tasks/currentUserTasks');
-            this.currentTasks = tasks;
-        }
-    },
-    actions: {
+            this.tasks = tasks;
+        },
         close(index: number) {
             this.tasks.splice(index, 1);
         },
