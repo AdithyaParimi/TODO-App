@@ -9,14 +9,17 @@ import { useSession } from "../models/session";
 const session = useSession();
 
 const currentTab = ref( 'All' );
-const allTasks = usetasks();
-const tasks = allTasks.currentTasks;
+const taskService = usetasks();
+const tasks = ref([])
+taskService.currentTasks().then(c=>{
+  tasks.value = taskService.currentTasks
+})
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
 
 function submitForm(e){
-  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
+  taskService.createTasks(Math.max(...taskService.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
    console.log(newTask);
 }
 
