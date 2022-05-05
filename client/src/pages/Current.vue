@@ -71,7 +71,7 @@ function submitForm(e){
                         </select>
                       </div>
                     <div v-else class="column is-one-quarter">
-                      {{users.list.find(u => u.id === task.assignedTo).handle}}
+                      {{users.list.find(u => u.id === task.assignedTo)?.handle}}
                     </div>
                 </div>
               </article>
