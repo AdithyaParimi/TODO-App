@@ -10,6 +10,7 @@ import { defineStore } from "pinia";
 export const useSession = defineStore('session', {
     state: () => ({
         user: null as users.User | null,
+        users: [] as users.User[],
         destinationUrl: null as string | null,
     }),
     actions: {
@@ -65,6 +66,10 @@ export const useSession = defineStore('session', {
                 });
                 console.table(messages.notifications)
             }
+        },
+
+       async getUsers(){
+            this.users = await this.api("users");
         },
 
         Logout() {
