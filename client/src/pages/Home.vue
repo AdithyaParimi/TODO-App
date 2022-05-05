@@ -47,7 +47,7 @@ function submitForm(e){
                     <input type="date" class="input" v-model="dueDate"/>
                      <select v-model="assignedTo">
                       <option disabled selected>Assign to</option>
-                      <option v-for="user in users" :key="user.id">{{user.handle}}</option>
+                      <option v-for="user in users" :key="user._id">{{user.handle}}</option>
                     </select>
                     <button  type="submit" class="button">Create</button>
                   </div>
