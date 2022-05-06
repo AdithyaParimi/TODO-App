@@ -24,9 +24,12 @@ const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
 
-function submitForm(e){
-  taskService.createTasks(Math.max(...taskService.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
-   console.log(newTask);
+function submitForm(){
+  tasksService.addNewTask(newTask.value, dueDate.value, assignedTo.value, session.user._id).then(()=>{
+      tasksService.currentUserTasks().then(()=>{
+      allTasks.value = tasksService.tasks
+    })
+  })
 }
 
 </script>
