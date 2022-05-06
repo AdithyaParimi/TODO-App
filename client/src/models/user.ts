@@ -7,5 +7,6 @@ export interface User {
     pic: string;
     id: number;
     token?: string;
+    _id: string;
 }
 
