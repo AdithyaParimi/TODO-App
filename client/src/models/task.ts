@@ -30,8 +30,8 @@ export const usetasks = defineStore('tasks', {
             this.tasks.splice(index, 1);
         },
 
-        async addNewTask(id: any, message: any, dueDate: any, assignedTo: any, userId: any , completed: any= false){
-            return await this.session.api("tasks",{id:id, completed: completed,message: message, dueDate: new Date(dueDate), createdBy: userId, assignedTo: assignedTo});
+        async addNewTask(message: any, dueDate: any, assignedTo: any, userId: any , completed: any= false){
+            return await this.session.api("tasks",{completed: completed,message: message, dueDate: new Date(dueDate), createdBy: userId, assignedTo: assignedTo});
         },
 
         
