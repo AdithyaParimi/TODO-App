@@ -16,7 +16,7 @@
         <div class="avatar">
             <img :src="session.user.pic" />
             <div>
-                <strong>{{ session.user.firstName }} {{ session.user.lastName }}</strong> <br />
+                <strong>{{ session.user.name }}</strong> <br />
                 <i>{{ session.user.email }}</i>
             </div>
         </div>
