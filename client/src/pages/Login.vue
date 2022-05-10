@@ -9,6 +9,12 @@ function login()
 {
     session.Login(username.value, password.value)
 }
+
+function directLogin(email: string, password: string)
+{
+    session.Login(email, password);
+}
+
 </script>
 
 <template>
@@ -23,9 +29,12 @@ function login()
             <label for="password">Password</label>
             <input id="password" class="input form-control" placeholder="Password" type="password" v-model="password" />
       </div>
-      <input type="submit" class="btn btn-primary"/>
+      <input type="submit" class="btn btn-primary" style="margin-top: 15px"/>
     </form>
     &nbsp;
+        <div>
+            <input type="button" value="Direct Login" class="btn btn-primary" @click="directLogin('president@newpaltz.edu','hugo')"/>      
+        </div>
         <router-link class="button is-warning my-5" to="/signup">
             <span class="icon">
                 <i class="fa fa-sign-in"></i>
