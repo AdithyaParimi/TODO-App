@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const userRoutes = require("./controllers/user");
 const taskRoutes = require("./controllers/task");
+const countryRoutes = require("./controllers/country");
 const userModel = require('./models/user');
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(express.json())
     })
     .use("/api/tasks/", taskRoutes)
     .use("/api/users/", userRoutes)
+    .use("/api/countries/", countryRoutes)
     .use((err, req, res, next) => {
         console.error(err);
         res .status(err.statusCode || 500)
