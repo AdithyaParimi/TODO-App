@@ -3,6 +3,11 @@
 import { ref } from "@vue/reactivity";
 import {User} from "../models/user";
 import { useSession } from "../models/session";
+import vSelect from 'vue-select';
+import Autocomplete from 'vue3-autocomplete'
+// Optional: Import default CSS
+import 'vue-select/dist/vue-select.css';
+
 const session = useSession();
 
 const name= ref();
@@ -22,7 +27,15 @@ function signup()
     }
     session.Signup(user);
 }
+const data= ref([]);
 
+       const selected= null;
+
+      function filteredDataArray() {
+        session.getCountriesByKeyword(selected).then(countries=>{
+            data.value = countries
+        })
+      }
 </script>
 
 <template>
@@ -43,6 +56,15 @@ function signup()
         <div>
             <label for="password">Password</label>
             <input id="password" class="input" placeholder="Password" v-model="password" />
+        </div>
+        <div>
+           <section>
+    <o-field label="country">
+      <o-autocomplete rounded expanded v-model="selected" :data="filteredDataArray" placeholder="e.g. jQuery" icon="search" clearable @select="option => selected = option">
+        <template slot="empty">No results found</template>
+      </o-autocomplete>
+    </o-field>
+  </section>
         </div>
         
         <button class="button is-primary my-5" @click="signup"> 

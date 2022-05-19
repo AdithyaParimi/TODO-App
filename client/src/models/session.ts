@@ -98,7 +98,15 @@ export const useSession = defineStore('session', {
                 //console.table(messages.notifications)
             }
 
-        }
+        },
+
+        async getCountries(){
+            return await this.api("countries");
+        },
+
+        async getCountriesByKeyword(search:string){
+            return await this.api("countries/"+search);
+        },
     }
 })
 
